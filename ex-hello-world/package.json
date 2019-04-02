@@ -4,6 +4,8 @@
   "description": "",
   "main": "index.js",
   "scripts": {
+    "genjcl" :"node genJCL.js",
+    "submit":"npm run genjcl && zowe jobs submit lf \"./build/custom.jcl\" --directory \"./output\"",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "keywords": [],

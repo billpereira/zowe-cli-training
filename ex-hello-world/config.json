@@ -1,9 +1,19 @@
 {
-    "job": {
-        "name": "TEMPLATE",
-        "account": "#ACCT"
-    },
-    "program": {
-        "name": "TEMPLATE"
-    }
+	"job": {
+		"name": "TEMPLATE",
+		"account": "#ACCT"
+	},
+	"dsn": {
+		"hlq": "A028356.ZOWE.HELLO2",
+		"dcb": {
+			"blockSize": 3120,
+			"recordFormat": "FB",
+			"recordLength": 80
+		},
+		"space": {
+			"directoryBlocks": 0,
+			"size": "10CYL"
+		},
+		"dataSetType": "LIBRARY"
+	}
 }
