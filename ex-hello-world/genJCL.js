@@ -36,4 +36,4 @@ if (!fs.existsSync('./build')) fs.mkdirSync('./build');
 
 fs.writeFileSync('./build/custom.jcl', buildJCL);
 
-console.log('Generated custom JCL to ./build/custom.jcl');
+console.log('Generated custom JCL to ./build/custom.jcl\n');
