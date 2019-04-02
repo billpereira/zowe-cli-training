@@ -4,7 +4,8 @@ const execCmd = require('./execCmd');
 
 const main = async () => {
 	let response = '';
-
+	
+	// * --------------------
 	// * Create LIST Rexx---
 
 	let datasetName = {
@@ -39,46 +40,19 @@ const main = async () => {
 	writeFile(dir, 'config', 'json', response);
 
 	// * --------------------
-    // * Alloc new        ---
-    let templateCreateNewJCL = readFile('createNew.jcl').toString();
-    let newConfig = JSON.parse(response)
-    newConfig.SYSPRIMARY = newConfig.SYSPRIMARY*2
-	writeFile(dir,'allocnew','jcl',templateCreateNewJCL,newConfig)
-	
-	let commandSubmit = `zowe jobs submit lf "./${dir}/allocnew.jcl" --directory "./output"`
+	// * Alloc new        ---
+	let templateCreateNewJCL = readFile('createNew.jcl').toString();
+	let newConfig = JSON.parse(response);
+	newConfig.SYSPRIMARY = newConfig.SYSPRIMARY * 2;
+	writeFile(dir, 'allocnew', 'jcl', templateCreateNewJCL, newConfig);
+
+	let commandSubmit = `zowe jobs submit lf "./${dir}/allocnew.jcl" --directory "./output"`;
 
 	response = await execCmd(commandSubmit);
 
-	console.log(response)
-        
+	console.log(response);
+
 	// * --------------------
 };
 
 main();
-
-// // -- listar as caracteristicas do dataset --
-// let commandExec =
-
-// exec(commandExec, (err, stdout, stderr) => {
-//     if (err) console.log(err)
-//     if (stdout) fs.writeFileSync(`listConfig.json`, stdout.toString();
-//     if (stderr) console.log(stderr.toString());
-// });
-
-// const readConfig = () => {
-//     try{
-//         return JSON.parse(fs.readFileSync('listConfig.json'));
-//     } catch(e){
-//         console.log('The data is empty...');
-//         return [];
-//     };
-// };
-
-// let config = readConfig()
-
-// console.log(config)
-
-// console.log(respExec)
-// -- Alocar o .NEW com 10% a mais de espaço --
-// -- Copiar do antigo para o novo --
-// -- renames --

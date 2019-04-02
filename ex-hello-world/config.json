@@ -4,7 +4,7 @@
 		"account": "#ACCT"
 	},
 	"dsn": {
-		"hlq": "A028356.ZOWE.HELLO2",
+		"hlq": "A028356.ZOWE.HELLO3",
 		"dcb": {
 			"blockSize": 3120,
 			"recordFormat": "FB",
