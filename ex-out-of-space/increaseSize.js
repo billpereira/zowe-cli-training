@@ -39,6 +39,8 @@ const main = async () => {
 
 	writeFile(dir, 'config', 'json', response);
 
+	console.log('Current config of your dataset \n',response)
+
 	// * --------------------
 	// * Alloc new        ---
 	let templateCreateNewJCL = readFile('createNew.jcl').toString();

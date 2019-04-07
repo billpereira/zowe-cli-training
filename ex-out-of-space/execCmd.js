@@ -6,6 +6,7 @@ const execZowe = cmd =>
 			if (error) {
 				reject(error);
 			}
+			console.log(stdout)
 			resolve(stdout ? stdout : stderr);
 		});
 	});

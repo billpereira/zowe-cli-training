@@ -1,0 +1,18 @@
+{
+  "name": "zosmf",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "up-xml":"zowe files upload ftu \"hello-world.xml\" \"/u/A028356/zosmf-workflows/hello-world.xml\" -b",
+    "up-cmd":"zowe files upload ftu \"commands.txt\" \"/u/A028356/zosmf-workflows/commands.txt\" -b",
+    "up-var":"zowe files upload ftu \"vars.txt\" \"/u/A028356/zosmf-workflows/vars.txt\" -b",
+    "cre-wf":"zowe wf cre wfuf \"HelloWorld\" --uss-file \"/u/A028356/zosmf-workflows/hello-world.xml\" --system-name \"LBI9\" --owner \"A028356\" --assign-to-owner --variables-input-file \"/u/A028356/zosmf-workflows/vars.txt\" --overwrite",
+    "lst-wf":"zowe wf ls awd --wn \"HelloWorld\" --list-steps --list-variables",
+    "str-wf":"zowe wf sta wf --wk \"bc4f7b9d-45b8-4437-bb20-5871b6e3a7ae\"",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC"
+}

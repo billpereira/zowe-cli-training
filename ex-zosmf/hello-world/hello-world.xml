@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!-- Container for the new workflow -->
+<workflow>
+
+    <workflowSettingInfo>
+        <variablesSetting isInstanceVariableWithoutPrefix="true"></variablesSetting>
+    </workflowSettingInfo>
+    <!-- Workflow metadata - information about the workflow itself -->
+    <workflowInfo>
+        <!-- Is it able to run steps in parallel? -->
+        <parallelSteps>false</parallelSteps>
+        <!-- 
+            It identifies the workflow
+            Has the atributes scope and isCalleble
+                scope: system, sysplex, none
+                isCallable: system, sysplex - in case is oittd it can't be called by another workflow
+        -->
+        <workflowID scope="system" isCallable="system">Hello World</workflowID>
+        <!-- Must be unique in the Workflow task -->
+        <workflowDefaultName>WORKFLOW#001-Hello-World</workflowDefaultName>
+        <workflowDescription>Then we have a simple description for our Hello World</workflowDescription>
+        <workflowVersion>1.0</workflowVersion>
+        <vendor>Bill's Example</vendor>
+        <General/>
+        <!-- This element is empty, and completely optional. -->
+    </workflowInfo>
+
+    <!-- Variables -->
+    <!-- 
+        name - identifies the variable
+        scope - instance/global the level in the workflow where it is referenced 
+        visibility - if it is publick or private private is default
+    -->
+    <variable name="file" scope="instance" visibility="private">
+        <!-- sub elements of variable -->
+        <label>file</label>
+        <abstract>file to display</abstract>
+        <description>which file you want to check</description>
+        <category>files</category>
+        <!-- type of variable -->
+        <string>
+            <default>/</default>
+        </string>
+    </variable>
+
+    <!-- Steps to be executed -->
+    <step name="subJob">
+        <title>Hello World</title>
+        <description>This step will issue df -Pkv on dir provided</description>
+        <variableValue name="file" scope="instance" noPromptIfSet="false" required="true"/>
+        <instructions substitution="false">Hello World sample</instructions>
+        <weight>1</weight>
+        <skills>Unix System Services</skills>
+        <autoEnable>true</autoEnable>
+        <canMarkAsFailed>false</canMarkAsFailed>
+        <template>
+            <fileTemplate substitution="true">
+            commands.txt
+            </fileTemplate>
+            <submitAs>shell-JCL</submitAs>
+        </template>
+    </step>
+
+
+</workflow>
+
+<!-- https://www.ibm.com/support/knowledgecenter/SSLTBW_2.3.0/com.ibm.zos.v2r3.izua700/izuprog_WorkflowsXML_Structure.htm -->
