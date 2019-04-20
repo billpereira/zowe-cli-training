@@ -1,0 +1,50 @@
+1 ------------------------------------------------
+
+zowe files cre ps A028356.EU2015.STATS --rf FB --rl 120 --bs 27480 --sz 1TRK --pa
+alcunit:   TRK
+dsorg:     PS
+primary:   1
+secondary: 1
+recfm:     FB
+blksize:   27480
+lrecl:     120
+
+zowe files ul ftds "eu2015.txt" "A028356.EU2015.STATS"
+success: true
+from:    /Users/williampereira/Documents/Training/MyPresentations/zowe/util/IEBGENER/eu2015.txt
+to:      A028356.EU2015.STATS
+
+file_to_upload: 1
+success:        1
+error:          0
+skipped:        0
+
+1 ------------------------------------------------
+
+2 ------------------------------------------------
+//STEP1    EXEC PGM=IEBGENER                                
+//SYSPRINT DD SYSOUT=*                                      
+//SYSUT1   DD DSN=&SYSUID..EU2015.STATS,DISP=SHR            
+//SYSUT2   DD DSN=&SYSUID..IEBGEN.EUSTATS,DISP=(NEW,CATLG), 
+//         DCB=*.SYSUT1,SPACE=(TRK,(1,1,10)),DSNTYPE=LIBRARY
+//SYSIN    DD *                                             
+ GENERATE MAXNAME=3,MAXGPS=2                                
+ MEMBER NAME=LABEL                                          
+ RECORD IDENT=(4,'Rank',1)                                  
+ MEMBER NAME=TOP10                                          
+ RECORD IDENT=(2,'10',1)                                    
+ MEMBER NAME=OTHER40      
+
+ zowe jobs submit lf "./crembrs.jcl" --directory "./output"
+
+//STEP1    EXEC PGM=IEBGENER                               
+//SYSIN    DD DUMMY                                        
+//SYSPRINT DD SYSOUT=*                                     
+//SYSUT1   DD DISP=SHR,DSN=&SYSUID..IEBGEN.EUSTATS(LABEL)  
+//         DD DISP=SHR,DSN=&SYSUID..IEBGEN.EUSTATS(TOP10)  
+//         DD DISP=SHR,DSN=&SYSUID..IEBGEN.EUSTATS(OTHER40)
+//SYSUT2   DD DISP=SHR,DSN=&SYSUID..IEBGEN.EUSTATS(STATS)
+3 ------------------------------------------------
+
+https://www.ibm.com/support/knowledgecenter/SSLTBW_2.1.0/com.ibm.zos.v2r1.idau100/iebgenr.htm
+https://mainframeplayground.neocities.org/Utilities.html

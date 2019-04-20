@@ -1,0 +1,14 @@
+        1 //EXAMPLE JOB (#ACCT),'DESCRIPTION',MSGCLASS=A,CLASS=A,                 JOB04100
+          //      MSGLEVEL=(1,1),REGION=0M,NOTIFY=&SYSUID.,SYSAFF=*
+          //* ********************************************************************
+          //* * SO THIS JOB WILL TAKE DATA FROM SEQ TO PDS
+          //* ********************************************************************
+          //* *
+          IEFC653I SUBSTITUTION JCL - (#ACCT),'DESCRIPTION',MSGCLASS=A,CLASS=A,MSGLEVEL=(1,1),REGION=0M,NOTIFY=A028356,
+          SYSAFF=*
+        2 //STEP1    EXEC PGM=IEBGENER
+        3 //SYSPRINT DD SYSOUT=*
+        4 //SYSUT1   DD DSN=A028356.EU2015.STATS,DISP=SHR
+        5 //SYSUT2   DD DSN=A028356.IEBGEN.EUSTATS5,DISP=(NEW,CATLG),
+          //         DCB=*.SYSUT1,SPACE=(TRK,(1,1,10)),DSNTYPE=LIBRARY
+        6 //SYSIN    DD *

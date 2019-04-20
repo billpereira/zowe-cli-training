@@ -1,0 +1,79 @@
+{
+	"Workflow Container":{
+		"description": "Initialize your XML for workflows",
+		"prefix": "wf",
+		"body": [
+			"<?xml version=\"1.0\" encoding=\"UTF-8\"?>",
+			"",
+			"<workflow>",
+			"  <workflowSettingInfo>",
+			"    <variablesSetting isInstanceVariableWithoutPrefix=\"${1:true|}\"></variablesSetting>",
+			"  </workflowSettingInfo>",
+			"",
+			"<!-- Workflow metadata - information about the workflow itself -->",
+			"",
+			"  <workflowInfo>",
+			"  <workflowID scope=\"${2|system,sysplex|}\" isCallable=\"${3|system,sysplex|}\">${4:WorkFlow ID}</workflowID>",
+			"  <workflowDefaultName>${5:WorkFlow Name}</workflowDefaultName>",
+			"  <workflowDescription>${6:WorkFlow Description}</workflowDescription>",
+			"  <workflowVersion>${7:1.0}</workflowVersion>",
+			"  <vendor>${8:Vendor}</vendor>",
+			"  <General/>",
+			"",
+			"  </workflowInfo>",
+			"",
+			"<!--                         Variables                         -->",
+			"",
+			"$0",
+			"",
+			"<!--                         Steps                             -->",
+			"",
+			"",
+			"</workflow>"
+		]
+	},
+	"WorkFlow Variable definition":{
+		"description": "Define workflow variable",
+		"prefix": "wf-v",
+		"body": [
+			"<variable name=\"${1:varName}\" scope=\"${2|instance,global|}\" visibility=\"${3:private}\">",
+			"  <label>${4:Label}</label>",
+			"  <abstract>${5:Abstract}</abstract>",
+			"  <description>${6:Quick Description}</description>",
+			"  <category>${7:category}</category>",
+			"  <${8|boolean,string,integer,decimal,time,date,password,array|}>",
+			"    <default>$9</default>",
+			"  </$8>",
+			"</variable>",
+			""
+		]
+	},
+	"WorkFlow Step definition":{
+		"prefix": "wf-s",
+		"description": "Define Workflow step",
+		"body": [
+			"<step name=\"${1:stepName}\">",
+			"  <title>${2:Title}</title>",
+			"  <description>${3:Description}</description>",
+			"  <!--  Variables call  -->",
+			"  $4",
+			"  <instructions substitution=\"${5:false}\">$6</instructions>",
+			"  <weight>$7</weight>",
+			"  <skills>$8</skills>",
+			"  <autoEnable>${9:true}</autoEnable>",
+			"  <canMarkAsFailed>${10:false}</canMarkAsFailed>",
+			"  <template>",
+			"    <${11|fileTemplate,inlineTemplate|} substitution=\"${12:true}\">",
+			"      $0",
+			"    </${11}>",
+			"    <submitAs>$13</submitAs>",
+			"  </template>",
+			"</step>"
+		]
+	},
+	"WorkFlow Step Variables":{
+		"prefix": "wf-s-var",
+		"description": "Call variable",
+		"body": "  <variableValue name=\"${1:varName}\" scope=\"${2:instance}\" noPromptIfSet=\"${3:false}\" required=\"${4:true}\"/>"
+	}
+}

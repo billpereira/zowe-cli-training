@@ -1,0 +1,33 @@
+{
+	"Job Card":{
+		"prefix": "job",
+		"description": "Job Card",
+		"body": [
+			"//${1:JOBNAME} JOB ${2:(#ACCT)},'${3:DESCRIPTION}',MSGCLASS=${4:A},CLASS=${5:A},",
+			"//      MSGLEVEL=${6:(1,1)},REGION=0M,NOTIFY=${7:&SYSUID.},SYSAFF=${8:*}",
+			"//* ********************************************************************",
+			"//* * ${9:COMMENTS} ",
+			"//* ********************************************************************",
+			"//* *  ",
+			"$0"
+		]
+	},
+	"Default exec":{
+		"prefix": "exec",
+		"description": "Default exec card",
+		"body": "//${1:STEPNAME}  EXEC  ${2:PGM=IEFBR14}"
+	},
+	"IEBCOPY Utility":{
+		"prefix": "iebcopy",
+		"description": "Basic IEBCOPY",
+		"body": [
+			"//${1:COPY}  EXEC PGM=IEBCOPY",
+			"//SYSPRINT DD SYSOUT=*",
+			"//${2:INDD}  DD DISP=SHR,DSN=${3:IN.DSN}",
+			"//${4:OUTDD}  DD DISP=SHR,DSN=${5:OUT.DSN}",
+			"//SYSIN    DD * ",
+			" COPY OUTDD=${2:INDD},INDD=${4:OUTDD} ",
+			"$0"
+		]
+	}
+}

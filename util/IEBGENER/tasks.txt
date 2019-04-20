@@ -1,0 +1,17 @@
+1.  Transmit following eu2015.txt to your z/OS system and name it '&SYSUID..EU2015.STATS'. 
+    Those are population statistics in most European countries. You'll need that data 
+    for few Tasks in this category.
+        alcunit:   TRK
+        dsorg:     PS
+        primary:   1
+        secondary: 1
+        recfm:     FB
+        blksize:   27480
+        lrecl:     120
+
+2.  Split EU2015 data set into three members and store them in 'userid.IEBGEN.EUSTATS':
+    - Store first record as LABEL member.
+    - Store 10 most populated countries as TOP10 member.
+    - Store all other countries as OTHER40 member.
+
+3.  Join LABEL, TOP10 and OTHER40 members back together and save it as STATS member in 'userid.IEBGEN.EUSTATS'.
